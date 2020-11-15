@@ -17,14 +17,7 @@ namespace DataGenerator
 
         public static ConfigurationBuilder<T> GetBuilder()
         {
-            if (_instance == null)
-            {
-
-                _instance = new ConfigurationBuilder<T>();
-
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new ConfigurationBuilder<T>());
         }
 
         public ConfigurationBuilder<T> ForProperty(Expression<Func<T, object>> expression, OptionConfigurator option)
@@ -39,44 +32,41 @@ namespace DataGenerator
             return _configuration;
         }
 
-        private static readonly string expressionCannotBeNullMessage = "The expression cannot be null.";
-        private static readonly string invalidExpressionMessage = "Invalid expression.";
+        private const string ExpressionCannotBeNullMessage = "The expression cannot be null.";
+        private const string InvalidExpressionMessage = "Invalid expression.";
+
         private static string GetMemberName(Expression expression)
         {
             if (expression == null)
             {
-                throw new ArgumentException(expressionCannotBeNullMessage);
+                throw new ArgumentException(ExpressionCannotBeNullMessage);
             }
 
-            if (expression is MemberExpression)
+            if (expression is MemberExpression memberExpression)
             {
                 // Reference type property or field
-                var memberExpression = (MemberExpression)expression;
                 return memberExpression.Member.Name;
             }
 
-            if (expression is MethodCallExpression)
+            if (expression is MethodCallExpression methodCallExpression)
             {
                 // Reference type method
-                var methodCallExpression = (MethodCallExpression)expression;
                 return methodCallExpression.Method.Name;
             }
 
-            if (expression is UnaryExpression)
+            if (expression is UnaryExpression unaryExpression)
             {
                 // Property, field of method returning value type
-                var unaryExpression = (UnaryExpression)expression;
                 return GetMemberName(unaryExpression);
             }
 
-            throw new ArgumentException(invalidExpressionMessage);
+            throw new ArgumentException(InvalidExpressionMessage);
         }
 
         private static string GetMemberName(UnaryExpression unaryExpression)
         {
-            if (unaryExpression.Operand is MethodCallExpression)
+            if (unaryExpression.Operand is MethodCallExpression methodExpression)
             {
-                var methodExpression = (MethodCallExpression)unaryExpression.Operand;
                 return methodExpression.Method.Name;
             }
 

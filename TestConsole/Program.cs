@@ -12,7 +12,7 @@ namespace TestConsole
                 .ForProperty(s => s.Age, opt => opt.IsAge)
                 .ForProperty(s => s.Surname, opt => opt.IsSurname)
                 .ForProperty(s => s.Email, opt => opt.IsEmail);
-            var models = new ModelBuilder<Student>(config, 3).Build();
+            var models = new ModelBuilder<Student>(config).Build(3);
             foreach (var model in models)
             {
                 Console.WriteLine(model.Name + " " + model.Surname + " " + model.Age + " " + model.Email);

@@ -6,34 +6,34 @@ namespace DataGenerator
 {
     public class ModelBuilder<T> where T : class
     {
-        private List<T> modeList = new List<T>();
-        private readonly Dictionary<string, ConfigurationBuilder<T>.Option> _configuration;
-        public ModelBuilder(ConfigurationBuilder<T> configuration, int count)
+        private readonly List<T> _modeList;
+        private readonly ConfigurationBuilder<T> _configurationBuilder;
+
+        public ModelBuilder(ConfigurationBuilder<T> configurationBuilder)
         {
-            _configuration = configuration.GetConfiguration();
-            for (int i = 0; i <= count; i++)
+            _modeList = new List<T>();
+            _configurationBuilder = configurationBuilder;
+            
+        }
+
+        public List<T> Build(int count)
+        {
+            var configuration = _configurationBuilder.GetConfiguration();
+            for (int i = 0; i < count; i++)
             {
                 var model = Activator.CreateInstance<T>();
                 var props = model.GetType().GetProperties();
                 foreach (var propertyInfo in props)
                 {
                     var propertyName = propertyInfo.Name;
-                    if (_configuration.ContainsKey(propertyName))
-                    {
-                        propertyInfo.SetValue(model, _configuration[propertyName].Invoke().Invoke());
-                    }
-                    else
-                    {
-                        propertyInfo.SetValue(model, default);
-                    }
+                    propertyInfo.SetValue(model,
+                        configuration.ContainsKey(propertyName)
+                            ? configuration[propertyName].Invoke().Invoke()
+                            : default(object));
                 }
-                modeList.Add(model);
+                _modeList.Add(model);
             }
-        }
-
-        public List<T> Build()
-        {
-            return modeList;
+            return _modeList;
         }
     }
 }

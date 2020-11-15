@@ -33,7 +33,7 @@ namespace DataGenerator
         {
             _function = () =>
             {
-                Random rnd = new Random();
+                var rnd = new Random();
                 var name = rnd.Next(10, 75); ;
                 return name;
             };
