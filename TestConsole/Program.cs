@@ -10,8 +10,13 @@ namespace TestConsole
         {
             Group group = new Group
             {
-                Id=Guid.NewGuid(),
-                Name="IA-83"
+                Id = Guid.NewGuid(),
+                Name = "IA-83"
+            };
+            Group group2 = new Group
+            {
+                Id = Guid.NewGuid(),
+                Name = "IT-91"
             };
             ConfigurationBuilder<Student> config = ConfigurationBuilder<Student>.GetBuilder()
                 .ForProperty(s => s.Id, opt => opt.IsGuid())
@@ -22,7 +27,8 @@ namespace TestConsole
                 .ForProperty(s => s.RecordBook, opt => opt.IsRndInt(1000, 9999))
                 .ForProperty(s => s.Info, opt => opt.IsRndText(10));
             var models = new ModelBuilder<Student>(config.WithParent(s => s.GroupId, s => s.Group, g => g.Id, group)).Build(100);
-            foreach (var model in models)
+            var models2 = new ModelBuilder<Student>(config.WithParent(s => s.GroupId, s => s.Group, g => g.Id, group2)).Build(100);
+            foreach (var model in models2)
             {
                 Console.WriteLine("Id: " + model.Id + Environment.NewLine + 
                                   "Name: " + model.Name + Environment.NewLine + 

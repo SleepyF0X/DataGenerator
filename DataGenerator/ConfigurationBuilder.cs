@@ -31,7 +31,7 @@ namespace DataGenerator
         {
             var propertyName = GetMemberName(property.Body);
             var option = optionConfig.Invoke(_optionBuilder);
-            _configuration.Add(propertyName, option);
+            ConfigurationAdd(propertyName, option);
             return _instance;
         }
         public ConfigurationBuilder<T> WithParent<T2>(Expression<Func<T, object>> property, Expression<Func<T2, object>> parentProperty, T2 model)
@@ -39,7 +39,7 @@ namespace DataGenerator
             var propertyName = GetMemberName(property.Body);
             var parentPropertyName = GetMemberName(parentProperty.Body);
             Func<dynamic> option = () => model.GetType().GetProperty(parentPropertyName)?.GetValue(model);
-            _configuration.Add(propertyName, option);
+            ConfigurationAdd(propertyName, option);
             return _instance;
         }
         public ConfigurationBuilder<T> WithParent<T2>(Expression<Func<T, object>> property, Expression<Func<T, object>> propertyObject, Expression<Func<T2, object>> parentProperty, T2 model)
@@ -49,8 +49,8 @@ namespace DataGenerator
             var parentPropertyName = GetMemberName(parentProperty.Body);
             Func<dynamic> propertyOption = () => model.GetType().GetProperty(parentPropertyName)?.GetValue(model);
             Func<dynamic> propertyObjectOption = () => model;
-            _configuration.Add(propertyName, propertyOption);
-            _configuration.Add(propertyObjectName, propertyObjectOption);
+            ConfigurationAdd(propertyName, propertyOption);
+            ConfigurationAdd(propertyObjectName, propertyObjectOption);
             return _instance;
         }
 
@@ -90,6 +90,15 @@ namespace DataGenerator
             }
 
             return ((MemberExpression)unaryExpression.Operand).Member.Name;
+        }
+
+        private void ConfigurationAdd(string key, Func<dynamic> option)
+        {
+            if (_configuration.ContainsKey(key))
+            {
+                _configuration.Remove(key);
+            }
+            _configuration.Add(key, option);
         }
     }
 }
