@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataGenerator;
 
 namespace TestConsole
@@ -7,6 +8,11 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
+            Group group = new Group
+            {
+                Id=Guid.NewGuid(),
+                Name="IA-83"
+            };
             ConfigurationBuilder<Student> config = ConfigurationBuilder<Student>.GetBuilder()
                 .ForProperty(s => s.Id, opt => opt.IsGuid())
                 .ForProperty(s => s.Name, opt => opt.IsName())
@@ -15,7 +21,7 @@ namespace TestConsole
                 .ForProperty(s => s.Email, opt => opt.IsEmail())
                 .ForProperty(s => s.RecordBook, opt => opt.IsRndInt(1000, 9999))
                 .ForProperty(s => s.Info, opt => opt.IsRndText(10));
-            var models = new ModelBuilder<Student>(config).Build(100);
+            var models = new ModelBuilder<Student>(config.WithParent(s => s.GroupId, s => s.Group, g => g.Id, group)).Build(100);
             foreach (var model in models)
             {
                 Console.WriteLine("Id: " + model.Id + Environment.NewLine + 
@@ -25,6 +31,8 @@ namespace TestConsole
                                   "Email: " + model.Email + Environment.NewLine +
                                   "Record Book number: " + model.RecordBook + Environment.NewLine +
                                   "Info: " + model.Info + Environment.NewLine +
+                                  "GroupId: " + model.GroupId+ Environment.NewLine +
+                                  "Group Name: " + model.Group?.Name + Environment.NewLine +
                                   "___________________________________________________________________");
             }
         }
