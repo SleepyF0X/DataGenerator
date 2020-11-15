@@ -15,10 +15,11 @@ namespace TestConsole
                 .ForProperty(s => s.Email, opt => opt.IsEmail())
                 .ForProperty(s => s.RecordBook, opt => opt.IsRndInt(1000, 9999))
                 .ForProperty(s => s.Info, opt => opt.IsRndText(10));
-            var models = new ModelBuilder<Student>(config).Build(3000);
+            var models = new ModelBuilder<Student>(config).Build(100);
             foreach (var model in models)
             {
-                Console.WriteLine("Name: "+ model.Name + Environment.NewLine + 
+                Console.WriteLine("Id: " + model.Id + Environment.NewLine + 
+                                  "Name: " + model.Name + Environment.NewLine + 
                                   "Surname: " + model.Surname + Environment.NewLine +
                                   "Age: " + model.Age + Environment.NewLine +
                                   "Email: " + model.Email + Environment.NewLine +

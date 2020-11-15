@@ -26,8 +26,7 @@ namespace DataGenerator
                 foreach (var propertyInfo in props)
                 {
                     var propertyName = propertyInfo.Name;
-                    propertyInfo.SetValue(model,
-                        configuration.ContainsKey(propertyName)
+                    propertyInfo.SetValue(model, configuration.ContainsKey(propertyName)
                             ? configuration[propertyName].Invoke()
                             : default(object));
                 }

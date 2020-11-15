@@ -11,8 +11,8 @@ namespace DataGenerator
         private static ConfigurationBuilder<T> _instance;
         private readonly Dictionary<string, dynamic> _configuration = new Dictionary<string, dynamic>();
         public delegate dynamic OptionConfigurator(OptionBuilder prop);
-        public delegate Func<dynamic> Option();
-        public delegate Func<dynamic> OptionWithParams(params dynamic[] param);
+        //public delegate Func<dynamic> Option();
+        //public delegate Func<dynamic> OptionWithParams(params dynamic[] param);
 
         private ConfigurationBuilder() { }
 
@@ -21,10 +21,11 @@ namespace DataGenerator
             return _instance ?? (_instance = new ConfigurationBuilder<T>());
         }
 
-        public ConfigurationBuilder<T> ForProperty(Expression<Func<T, object>> expression, OptionConfigurator option)
+        public ConfigurationBuilder<T> ForProperty(Expression<Func<T, object>> expression, OptionConfigurator optionConfig)
         {
             var propertyName = GetMemberName(expression.Body);
-            _configuration.Add(propertyName, option.Invoke(_optionBuilder));
+            var option = optionConfig.Invoke(_optionBuilder);
+            _configuration.Add(propertyName, option);
             return _instance;
         }
 
