@@ -28,7 +28,7 @@ namespace DataGenerator
                     var propertyName = propertyInfo.Name;
                     propertyInfo.SetValue(model,
                         configuration.ContainsKey(propertyName)
-                            ? configuration[propertyName].Invoke().Invoke()
+                            ? configuration[propertyName].Invoke()
                             : default(object));
                 }
                 _modeList.Add(model);

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Runtime;
 
 namespace DataGenerator
 {
@@ -10,6 +12,7 @@ namespace DataGenerator
         private readonly string[] _names = File.ReadAllLines(@"D:\.NET\Repo\DataGenerator\DataGenerator\Resources\NamesEn.txt");
         private readonly string[] _surnames = File.ReadAllLines(@"D:\.NET\Repo\DataGenerator\DataGenerator\Resources\SurnamesEn.txt");
         private readonly string[] _emails = File.ReadAllLines(@"D:\.NET\Repo\DataGenerator\DataGenerator\Resources\Emails.txt");
+        private readonly string _lorem = File.ReadAllText(@"D:\.NET\Repo\DataGenerator\DataGenerator\Resources\LoremIpsum.txt");
         private Func<dynamic> _function;
         public Func<dynamic> IsName()
         {
@@ -34,8 +37,8 @@ namespace DataGenerator
             _function = () =>
             {
                 var rnd = new Random();
-                var name = rnd.Next(10, 75); ;
-                return name;
+                var age = rnd.Next(10, 75); ;
+                return age;
             };
             return _function;
         }
@@ -45,6 +48,46 @@ namespace DataGenerator
             {
                 var email = _emails[new Random().Next(_emails.Length)];
                 return email;
+            };
+            return _function;
+        }
+        public Func<dynamic> IsGuid()
+        {
+            _function = () =>
+            {
+                var guid = Guid.NewGuid();
+                return guid;
+            };
+            return _function;
+        }
+        public Func<dynamic> IsDate(DateTime minDate, DateTime maxDate)
+        {
+            _function = () =>
+            {
+                var guid = Guid.NewGuid();
+                return guid;
+            };
+            return _function;
+        }
+
+        public Func<dynamic> IsRndInt(int minValue, int maxValue)
+        {
+            _function = () =>
+            {
+                var rnd = new Random();
+                var number = rnd.Next(minValue, maxValue);
+                return number;
+            };
+            return _function;
+        }
+        public Func<dynamic> IsRndText(int wordsCount)
+        {
+            _function = () =>
+            {
+                var rnd = new Random();
+                var textArray = _lorem.Trim().Split(' ');
+                var text = string.Join(" ",textArray.Take(wordsCount).ToArray());
+                return text;
             };
             return _function;
         }

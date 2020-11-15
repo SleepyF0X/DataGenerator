@@ -9,9 +9,10 @@ namespace DataGenerator
     {
         private readonly OptionBuilder _optionBuilder = new OptionBuilder();
         private static ConfigurationBuilder<T> _instance;
-        private readonly Dictionary<string, Option> _configuration = new Dictionary<string, Option>();
-        public delegate Option OptionConfigurator(OptionBuilder prop);
+        private readonly Dictionary<string, dynamic> _configuration = new Dictionary<string, dynamic>();
+        public delegate dynamic OptionConfigurator(OptionBuilder prop);
         public delegate Func<dynamic> Option();
+        public delegate Func<dynamic> OptionWithParams(params dynamic[] param);
 
         private ConfigurationBuilder() { }
 
@@ -27,7 +28,7 @@ namespace DataGenerator
             return _instance;
         }
 
-        public Dictionary<string, Option> GetConfiguration()
+        public Dictionary<string, dynamic> GetConfiguration()
         {
             return _configuration;
         }

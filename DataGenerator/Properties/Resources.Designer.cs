@@ -59,5 +59,199 @@ namespace DataGenerator.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 053sph@gmail.com
+        ///1127.kimberly@gmail.com
+        ///1539601486@qq.com
+        ///1990G8REngineer@gmail.com
+        ///1constmgr@gmail.com
+        ///1jlanger@comcast.net
+        ///1kr.davis@gmail.com
+        ///1marini@bellsouth.net
+        ///1rajiv@gmail.com
+        ///1seh@earthlink.net
+        ///2001g8tor@gmail.com
+        ///2001g8tor@gmail.com
+        ///2001soni@gmail.com
+        ///2001ufgator@comcast.net
+        ///2001ufgator@comcast.net
+        ///2011AZChris@Gmail.com
+        ///2014@visionengineering.us
+        ///22iriswalden@gmail.com
+        ///24mlove24@gmail.com
+        ///281livengood@comcast.net
+        ///2brian.broussard@gmail.com
+        ///2chris.clark@gmail.com
+        ///2chris.clark@gmail.com
+        ///2dennykort@g [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Emails {
+            get {
+                return ResourceManager.GetString("Emails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt sapien et purus ornare, eget fringilla ex bibendum. Phasellus lacinia tempus nisl, iaculis iaculis turpis finibus eu. Sed sit amet nunc vehicula, rutrum quam et, dictum massa. Nam vitae condimentum dui. Phasellus a fringilla lacus. Proin vel quam id diam finibus egestas vitae ut massa. Sed lobortis enim vitae ipsum porta, non tempor diam gravida. In sed feugiat nibh, id pulvinar libero. Vestibulum interdum risus pretium est dictum vehi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LoremIpsum {
+            get {
+                return ResourceManager.GetString("LoremIpsum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Michael
+        ///Christopher
+        ///Jessica
+        ///Matthew
+        ///Ashley
+        ///Jennifer
+        ///Joshua
+        ///Amanda
+        ///Daniel
+        ///David
+        ///James
+        ///Robert
+        ///John
+        ///Joseph
+        ///Andrew
+        ///Ryan
+        ///Brandon
+        ///Jason
+        ///Justin
+        ///Sarah
+        ///William
+        ///Jonathan
+        ///Stephanie
+        ///Brian
+        ///Nicole
+        ///Nicholas
+        ///Anthony
+        ///Heather
+        ///Eric
+        ///Elizabeth
+        ///Adam
+        ///Megan
+        ///Melissa
+        ///Kevin
+        ///Steven
+        ///Thomas
+        ///Timothy
+        ///Christina
+        ///Kyle
+        ///Rachel
+        ///Laura
+        ///Lauren
+        ///Amber
+        ///Brittany
+        ///Danielle
+        ///Richard
+        ///Kimberly
+        ///Jeffrey
+        ///Amy
+        ///Crystal
+        ///Michelle
+        ///Tiffany
+        ///Jeremy
+        ///Benjamin
+        ///Mark
+        ///Emily
+        ///Aaron
+        ///Charles
+        ///Rebecca
+        ///Jacob
+        ///Stephen
+        ///Patrick
+        ///Sean
+        ///Erin
+        ///Zachary
+        ///Jamie
+        ///Kelly
+        ///Samantha
+        ///Nathan
+        ///Sara
+        ///Dustin
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string NamesEn {
+            get {
+                return ResourceManager.GetString("NamesEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smith
+        ///Johnson
+        ///Williams
+        ///Jones
+        ///Brown
+        ///Davis
+        ///Miller
+        ///Wilson
+        ///Moore
+        ///Taylor
+        ///Anderson
+        ///Thomas
+        ///Jackson
+        ///White
+        ///Harris
+        ///Martin
+        ///Thompson
+        ///Garcia
+        ///Martinez
+        ///Robinson
+        ///Clark
+        ///Rodriguez
+        ///Lewis
+        ///Lee
+        ///Walker
+        ///Hall
+        ///Allen
+        ///Young
+        ///Hernandez
+        ///King
+        ///Wright
+        ///Lopez
+        ///Hill
+        ///Scott
+        ///Green
+        ///Adams
+        ///Baker
+        ///Gonzalez
+        ///Nelson
+        ///Carter
+        ///Mitchell
+        ///Perez
+        ///Roberts
+        ///Turner
+        ///Phillips
+        ///Campbell
+        ///Parker
+        ///Evans
+        ///Edwards
+        ///Collins
+        ///Stewart
+        ///Sanchez
+        ///Morris
+        ///Rogers
+        ///Reed
+        ///Cook
+        ///Morgan
+        ///Bell
+        ///Murphy
+        ///Bailey
+        ///Rivera
+        ///Cooper
+        ///Richardson
+        ///Cox
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SurnamesEn {
+            get {
+                return ResourceManager.GetString("SurnamesEn", resourceCulture);
+            }
+        }
     }
 }
